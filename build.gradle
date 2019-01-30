@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'org.yyx'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+}
+
+dependencies {
+    compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.59'
+    compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.59'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each {
+        it.mkdirs()
+    }
+    sourceSets*.resources.srcDirs*.each {it.mkdirs()}
+}
